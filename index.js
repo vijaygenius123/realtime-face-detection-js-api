@@ -17,3 +17,14 @@ function startVideo() {
         error => console.log(error)
     )
 }
+
+
+video.addEventListener('play', function () {
+    setInterval(async function () {
+        const detections = await faceapi.detectAllFaces(video,
+            new faceapi.TinyFaceDetectorOptions())
+            .withFaceLandmarks()
+            .withFaceExpressions()
+        console.log(detections)
+    }, 100)
+})
